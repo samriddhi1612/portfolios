@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Samriddhi Mishra — Portfolio</title>
+  <meta name="description" content="Portfolio of Samriddhi Mishra — About, skills, and project gallery." />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="icon" href="favicon.ico" />
+  <style>
+    :root{
+      --bg:#0b0c10; --surface:#121318; --text:#eaecef; --muted:#a9b1bd;
+      --brand:#7c9cff; --brand-weak:#3147ff22; --chip:#1f2430; --radius:14px;
+      --shadow:0 10px 30px rgba(0,0,0,.35); --maxw:1100px;
+    }
+    @media (prefers-color-scheme: light){
+      :root{ --bg:#f7f8fb; --surface:#ffffff; --text:#0f172a; --muted:#485063; --brand:#365bfd; --brand-weak:#365bfd14; --chip:#eef1f8; --shadow:0 12px 24px rgba(16,24,40,.1) }
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;height:100%}
+    body{font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial; background: radial-gradient(1200px 600px at 70% -10%, var(--brand-weak), transparent), var(--bg); color:var(--text)}
+    a{color:var(--brand); text-decoration:none}
+    a:hover{text-decoration:underline}
+    .wrap{max-width:var(--maxw); margin-inline:auto; padding:clamp(16px,3vw,32px)}
+    header{position:sticky; top:0; z-index:100; backdrop-filter:blur(8px);
+      background:color-mix(in oklab,var(--bg) 80%,transparent);
+      border-bottom:1px solid color-mix(in srgb,var(--text) 10%,transparent)}
+    .nav{display:flex; align-items:center; gap:14px; justify-content:space-between}
+    .nav .left{display:flex; align-items:center; gap:14px}
+    .badge{display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; background:var(--surface); border:1px solid color-mix(in srgb,var(--text) 8%,transparent); box-shadow:var(--shadow)}
+    .nav a.btn{padding:10px 14px; border-radius:10px; background:var(--chip); color:var(--text); border:1px solid color-mix(in srgb,var(--text) 8%,transparent)}
+    .nav a.btn:hover{background:color-mix(in srgb,var(--chip) 85%, var(--brand) 15%)}
+    .theme-toggle{border:1px solid color-mix(in srgb,var(--text) 12%,transparent); background:var(--surface); color:var(--text); border-radius:10px; padding:10px 12px; cursor:pointer}
+    main{display:grid; gap:40px}
+    section{background:var(--surface); border:1px solid color-mix(in srgb,var(--text) 10%,transparent); border-radius:var(--radius); padding:clamp(18px,3vw,28px); box-shadow:var(--shadow)}
+    h1,h2{line-height:1.2; margin:0 0 10px}
+    .lead{color:var(--muted); margin:0 0 8px}
+    .about{display:grid; grid-template-columns:minmax(0,1fr); gap:18px}
+    .about .top{display:flex; gap:22px; align-items:center; flex-wrap:wrap}
+    .avatar{width:84px; height:84px; border-radius:50%; background:var(--chip); border:2px solid color-mix(in srgb,var(--text) 12%,transparent); display:grid; place-items:center; font-weight:700}
+    .chips{display:flex; flex-wrap:wrap; gap:10px}
+    .chip{border:1px solid color-mix(in srgb,var(--text) 10%,transparent); background:var(--chip); color:var(--text); padding:8px 12px; border-radius:999px; font-size:.9rem}
+    .actions{display:flex; gap:10px; flex-wrap:wrap; margin-top:8px}
+    .btn{display:inline-flex; align-items:center; gap:8px; padding:10px 12px; border-radius:10px; cursor:pointer; border:1px solid color-mix(in srgb,var(--text) 12%,transparent); background:var(--chip); color:var(--text); text-decoration:none}
+    .btn.primary{background:var(--brand); color:white; border-color:transparent}
+    .skills .filters, .projects .filters{display:flex; flex-wrap:wrap; gap:10px; margin-top:10px}
+    .skills .filters button, .projects .filters .filter{border:1px solid color-mix(in srgb,var(--text) 12%,transparent); background:var(--chip); color:var(--text); border-radius:999px; padding:8px 12px; cursor:pointer}
+    .skills .filters button[aria-pressed="true"], .projects .filters .filter[aria-pressed="true"]{outline:2px solid var(--brand); background:var(--brand-weak)}
+    .skills .grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(180px,1fr)); gap:12px; margin-top:14px}
+    .skill-card{padding:14px; border-radius:12px; background:color-mix(in srgb,var(--surface) 88%, var(--brand) 12%); border:1px solid color-mix(in srgb,var(--text) 10%,transparent)}
+    .skill-card small{color:var(--muted)}
+    .projects .toolbar{display:flex; gap:10px; align-items:center; justify-content:space-between; flex-wrap:wrap; margin-bottom:8px}
+    .projects .grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(260px,1fr)); gap:16px; margin-top:12px}
+    .card{display:flex; flex-direction:column; gap:10px; background:var(--surface); border:1px solid color-mix(in srgb,var(--text) 10%,transparent); border-radius:14px; overflow:hidden; box-shadow:var(--shadow)}
+    .media{aspect-ratio:16/10; background:var(--chip); display:grid; place-items:center}
+    .poster{width:100%; height:100%; object-fit:cover; display:block}
+    .card .inner{padding:12px 14px}
+    .tags{display:flex; gap:8px; flex-wrap:wrap}
+    .tag{font-size:.8rem; padding:4px 8px; border-radius:999px; background:var(--chip); border:1px solid color-mix(in srgb,var(--text) 10%,transparent)}
+    footer{color:var(--muted); text-align:center; padding-bottom:30px}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap nav" role="navigation" aria-label="Primary">
+      <div class="left">
+        <span class="badge" aria-label="Home">
+          <strong>👋 Samriddhi Mishra</strong>
+          <span style="color:var(--muted)">Portfolio</span>
+        </span>
+        <a class="btn" href="#about">About</a>
+        <a class="btn" href="#skills">Skills</a>
+        <a class="btn" href="#projects">Projects</a>
+        <a class="btn" href="#contact">Contact</a>
+      </div>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light theme">🌗 Theme</button>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <!-- ABOUT -->
+    <section id="about" class="about" aria-labelledby="about-title">
+      <div class="top">
+        <div class="avatar" aria-hidden="true">SM</div>
+        <div>
+          <h1 id="about-title">Hey, I’m Samriddhi.</h1>
+          <p class="lead">3rd-year Mechanical Engineering student @ UBC • CAD/FEA/Robotics • Hands-on builder.</p>
+        </div>
+      </div>
+      <p>
+        I’m a mechanical engineer-in-training who loves designing and making things—from rail vehicles to levitation gadgets. Recently, I interned at Tata Boeing Aerospace (manufacturing engineering, Python automation for vertical-fin drilling) and contribute to UBC Rocket (TVC subsystem) and UBC SUBC (drivetrain housing). I’m also exploring generative-AI-assisted design in the Computational Multiphysics Lab.
+      </p>
+      <div class="chips" aria-label="At-a-glance">
+        <span class="chip">📍 Vancouver</span>
+        <span class="chip">🎓 UBC Mechanical</span>
+        <span class="chip">🚀 UBC Rocket — TVC</span>
+        <span class="chip">🛠 SUBC — Drivetrain</span>
+        <span class="chip">🏭 TBAL Intern</span>
+        <span class="chip">🧪 Comp. Multiphysics Lab</span>
+      </div>
+      <div class="actions">
+        <a class="btn primary" href="assets/Samriddhi_Mishra_Resume.pdf" download>⬇️ Download Resume</a>
+        <a class="btn" href="https://www.linkedin.com/in/samriddhi-mishra-b74ab81aa/" target="_blank" rel="noopener">in LinkedIn</a>
+        <a class="btn" href="mailto:your.email@ubc.ca">✉️ Email</a>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="skills" aria-labelledby="skills-title">
+      <h2 id="skills-title">Skills</h2>
+      <p class="lead">Toggle to highlight the skills you want to filter projects by.</p>
+      <div class="skills filters" role="group" aria-label="Skill filters">
+        <button class="skill-toggle" data-skill="cad" aria-pressed="false">CAD</button>
+        <button class="skill-toggle" data-skill="fea" aria-pressed="false">FEA</button>
+        <button class="skill-toggle" data-skill="cfd" aria-pressed="false">CFD</button>
+        <button class="skill-toggle" data-skill="manufacturing" aria-pressed="false">Manufacturing</button>
+        <button class="skill-toggle" data-skill="robotics" aria-pressed="false">Robotics</button>
+        <button class="skill-toggle" data-skill="threeD" aria-pressed="false">3D Modeling</button>
+        <button class="skill-toggle" data-skill="python" aria-pressed="false">Python</button>
+        <button class="skill-toggle" data-skill="electronics" aria-pressed="false">Electronics</button>
+        <button class="skill-toggle" data-skill="arduino" aria-pressed="false">Arduino</button>
+        <button class="skill-toggle" data-skill="embedded" aria-pressed="false">Embedded C</button>
+      </div>
+      <div class="grid" aria-label="Skill summary">
+        <div class="skill-card"><strong>CAD</strong><br><small>SolidWorks (parts, assemblies, drawings)</small></div>
+        <div class="skill-card"><strong>FEA</strong><br><small>ANSYS, SolidWorks Simulation</small></div>
+        <div class="skill-card"><strong>CFD</strong><br><small>XFOIL basics, OpenFOAM (intro)</small></div>
+        <div class="skill-card"><strong>Manufacturing</strong><br><small>Machining, 3D printing, DfM/DfA</small></div>
+        <div class="skill-card"><strong>Robotics</strong><br><small>Linkages, drivetrains, EOAT</small></div>
+        <div class="skill-card"><strong>3D Modeling</strong><br><small>GLB/GLTF assets, texturing</small></div>
+        <div class="skill-card"><strong>Python</strong><br><small>Automation, optimization, data</small></div>
+        <div class="skill-card"><strong>Electronics</strong><br><small>PCB soldering, op-amps, sensors</small></div>
+        <div class="skill-card"><strong>Arduino</strong><br><small>Sensor I/O, RPM measurement</small></div>
+        <div class="skill-card"><strong>Embedded C</strong><br><small>Interrupts, basic firmware</small></div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="projects" aria-labelledby="projects-title">
+      <div class="toolbar">
+        <h2 id="projects-title">Projects</h2>
+        <div class="right">
+          <div class="filters" role="group" aria-label="Project filter (by skills)">
+            <button class="filter" data-skill="cad" aria-pressed="false">CAD</button>
+            <button class="filter" data-skill="fea" aria-pressed="false">FEA</button>
+            <button class="filter" data-skill="cfd" aria-pressed="false">CFD</button>
+            <button class="filter" data-skill="manufacturing" aria-pressed="false">Manufacturing</button>
+            <button class="filter" data-skill="robotics" aria-pressed="false">Robotics</button>
+            <button class="filter" data-skill="threeD" aria-pressed="false">3D</button>
+            <button class="filter" data-skill="python" aria-pressed="false">Python</button>
+            <button class="filter" data-skill="electronics" aria-pressed="false">Electronics</button>
+            <button class="filter" data-skill="arduino" aria-pressed="false">Arduino</button>
+            <button class="filter" data-skill="embedded" aria-pressed="false">Embedded C</button>
+          </div>
+          <button class="btn" id="resetFilters">Reset</button>
+        </div>
+      </div>
+
+      <p class="lead">Click a card to read more. The full page shows an interactive 3D model.</p>
+
+      <div class="grid" id="projectGrid">
+        <!-- RAIL SPEEDER -->
+        <article class="card" data-tags="cad threeD manufacturing">
+          <div class="media">
+            <img class="poster" src="assets/posters/rail-speeder.jpg" alt="Rail Speeder chassis preview" loading="lazy" decoding="async" />
+          </div>
+          <div class="inner">
+            <h3>Rail Speeder Chassis Design</h3>
+            <p class="lead">G-gauge chassis optimized for light weight, turning, and hill-climb; laser-cuttable geometry.</p>
+            <div class="tags"><span class="tag">CAD</span><span class="tag">3D</span><span class="tag">Manufacturing</span></div>
+            <small>MECH 223 • Jan 2025</small>
+            <div class="actions">
+              <a class="btn primary" href="rail-speeder.html" target="_blank" rel="noopener">View Project →</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- RAIL HAULER -->
+        <article class="card" data-tags="cad manufacturing robotics threeD">
+          <div class="media">
+            <img class="poster" src="assets/posters/rail-hauler.jpg" alt="Rail Hauler preview" loading="lazy" decoding="async" />
+          </div>
+          <div class="inner">
+            <h3>Rail Hauler Design</h3>
+            <p class="lead">166×40 mm, 36 g FDM chassis with ±5° front articulation for 600 mm curves and hill clearance.</p>
+            <div class="tags"><span class="tag">CAD</span><span class="tag">Robotics</span><span class="tag">Manufacturing</span></div>
+            <small>MECH 223 • Mar 2025</small>
+            <div class="actions">
+              <a class="btn primary" href="rail-hauler.html" target="_blank" rel="noopener">View Project →</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- JET ENGINE CAD -->
+        <article class="card" data-tags="cad threeD manufacturing">
+          <div class="media">
+            <img class="poster" src="assets/posters/jet-engine.jpg" alt="Jet Engine CAD preview" loading="lazy" decoding="async" />
+          </div>
+          <div class="inner">
+            <h3>Jet Engine CAD Model (In Progress)</h3>
+            <p class="lead">Modular SolidWorks build (rear case, flare levers/base, heat plate, combustor shell); compressor & stator next.</p>
+            <div class="tags"><span class="tag">CAD</span><span class="tag">3D</span><span class="tag">Manufacturing</span></div>
+            <small>Personal • Oct 2025 →</small>
+            <div class="actions">
+              <a class="btn primary" href="jet-engine.html" target="_blank" rel="noopener">View Project →</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- TACHOMETER -->
+        <article class="card" data-tags="electronics arduino embedded">
+          <div class="media">
+            <img class="poster" src="assets/posters/tachometer.jpg" alt="Tachometer build with IR sensor and Arduino" loading="lazy" decoding="async" />
+          </div>
+          <div class="inner">
+            <h3>Tachometer</h3>
+            <p class="lead">IR sensor + Arduino Uno; interrupt-based RPM measurement and real-time display.</p>
+            <div class="tags"><span class="tag">Electronics</span><span class="tag">Arduino</span><span class="tag">Embedded C</span></div>
+            <small>Personal • Nov 2024</small>
+            <div class="actions">
+              <a class="btn primary" href="https://github.com/samriddhi1612/Tachometer-Arduino-Code" target="_blank" rel="noopener">GitHub Code</a>
+              <a class="btn" href="tachometer.html" target="_blank" rel="noopener">View Project →</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- MAGLEV -->
+        <article class="card" data-tags="cad electronics manufacturing">
+          <div class="media">
+            <img class="poster" src="assets/posters/maglev.jpg" alt="Magnetic levitation device preview" loading="lazy" decoding="async" />
+          </div>
+          <div class="inner">
+            <h3>Magnetic Levitation (MagLev) Device</h3>
+            <p class="lead">Op-amp control + electromagnet; PCB assembly, machining and drafting for stable levitation.</p>
+            <div class="tags"><span class="tag">Electronics</span><span class="tag">CAD</span><span class="tag">Manufacturing</span></div>
+            <small>MECH 220 • Aug 2024</small>
+            <div class="actions">
+              <a class="btn" href="maglev.html" target="_blank" rel="noopener">View Project →</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" aria-labelledby="contact-title">
+      <h2 id="contact-title">Contact Me</h2>
+      <p class="lead">Feel free to reach out — I’d love to connect and talk about engineering, design teams, internships, and projects.</p>
+      <div class="actions">
+        <a class="btn primary" href="assets/Samriddhi_Mishra_Resume.pdf" download>⬇️ Download Resume</a>
+        <a class="btn" href="https://www.linkedin.com/in/samriddhi-mishra-b74ab81aa/" target="_blank" rel="noopener">in LinkedIn</a>
+        <a class="btn" href="mailto:your.email@ubc.ca">✉️ Email</a>
+      </div>
+    </section>
+
+    <footer>
+      <p>© <span id="year"></span> Samriddhi Mishra.</p>
+    </footer>
+  </main>
+
+  <script>
+    // Theme toggle
+    const themeToggle = document.getElementById('themeToggle');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    const applyTheme = (mode) => {
+      if(mode === 'dark'){ document.documentElement.style.colorScheme = 'dark'; }
+      else if(mode === 'light'){ document.documentElement.style.colorScheme = 'light'; }
+      else { document.documentElement.style.colorScheme = prefersDark.matches ? 'dark' : 'light'; }
+      localStorage.setItem('theme', mode);
+    };
+    applyTheme(localStorage.getItem('theme') || 'auto');
+    themeToggle.addEventListener('click', ()=>{
+      const current = localStorage.getItem('theme') || 'auto';
+      const next = current === 'dark' ? 'light' : current === 'light' ? 'auto' : 'dark';
+      applyTheme(next);
+      themeToggle.textContent = next === 'dark' ? '🌗 Theme' : next === 'light' ? '🌞 Theme' : '🌙 Theme';
+    });
+
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Skills toggles mirror projects filters
+    const skillToggles = [...document.querySelectorAll('.skill-toggle')];
+    const filterButtons = [...document.querySelectorAll('.projects .filter')];
+    skillToggles.forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const pressed = btn.getAttribute('aria-pressed') === 'true';
+        btn.setAttribute('aria-pressed', String(!pressed));
+        const twin = filterButtons.find(b => b.dataset.skill === btn.dataset.skill);
+        if(twin){ twin.setAttribute('aria-pressed', String(!pressed)); applyFilters(); }
+      });
+    });
+
+    // Projects filtering
+    const grid = document.getElementById('projectGrid');
+    const cards = [...grid.querySelectorAll('.card')];
+    function activeSkills(){
+      return filterButtons.filter(b => b.getAttribute('aria-pressed') === 'true').map(b => b.dataset.skill);
+    }
+    function applyFilters(){
+      const active = activeSkills();
+      cards.forEach(card=>{
+        if(active.length === 0){ card.hidden = false; return; }
+        const tags = (card.dataset.tags || '').split(' ').filter(Boolean);
+        const show = active.every(s => tags.includes(s));
+        card.hidden = !show;
+      });
+    }
+    filterButtons.forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const pressed = btn.getAttribute('aria-pressed') === 'true';
+        btn.setAttribute('aria-pressed', String(!pressed));
+        const twin = skillToggles.find(b => b.dataset.skill === btn.dataset.skill);
+        if(twin){ twin.setAttribute('aria-pressed', String(!pressed)); }
+        applyFilters();
+      });
+    });
+    document.getElementById('resetFilters').addEventListener('click', ()=>{
+      [...skillToggles, ...filterButtons].forEach(b => b.setAttribute('aria-pressed','false'));
+      applyFilters();
+    });
+
+    // Keyboard accessibility for chips
+    [...skillToggles, ...filterButtons].forEach(b=>{
+      b.tabIndex = 0;
+      b.addEventListener('keydown', (e)=>{ if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); b.click(); } });
+    });
+  </script>
+</body>
+</html>
